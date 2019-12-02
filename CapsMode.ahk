@@ -5,34 +5,126 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 SetCapsLockState, AlwaysOff
 
+; some copied from https://autohotkey.com/board/topic/41206-modal-vim/
 Amount := ""
 
-CapsLock & 1::Amount := Amount . "1"
-CapsLock & 2::Amount := Amount . "2"
-CapsLock & 3::Amount := Amount . "3"
-CapsLock & 4::Amount := Amount . "4"
-CapsLock & 5::Amount := Amount . "5"
-CapsLock & 6::Amount := Amount . "6"
-CapsLock & 7::Amount := Amount . "7"
-CapsLock & 8::Amount := Amount . "8"
-CapsLock & 9::Amount := Amount . "9"
+resetInputNumber()
+{
+   global
+   Amount := " "
+}
 
-CapsLock up::Amount := ""
+; numbers
 
-CapsLock & j::Send, {blind}{Left %Amount%}
-CapsLock & k::Send, {blind}{Down}
-CapsLock & l::Send, {blind}{Right}
-CapsLock & i::Send, {blind}{Up}
+CapsLock & 0::
+{
+   Amount = %Amount%0
+   return
+}
+CapsLock & 1::
+{
+   Amount = %Amount%1
+   return
+}
+CapsLock & 2::
+{
+   Amount = %Amount%2
+   return
+}
+CapsLock & 3::
+{
+   Amount = %Amount%3
+   return
+}
+CapsLock & 4::
+{
+   Amount = %Amount%4
+   return
+}
+CapsLock & 5::
+{
+   Amount = %Amount%5
+   return
+}
+CapsLock & 6::
+{
+   Amount = %Amount%6
+   return
+}
+CapsLock & 7::
+{
+   Amount = %Amount%7
+   return
+}
+CapsLock & 8::
+{
+   Amount = %Amount%8
+   return
+}
+CapsLock & 9::
+{
+   Amount = %Amount%9
+   return
+}
 
-CapsLock & y::Send, {blind}{Delete}
+; doesnt work because the CapsLock is counted with the number combination
+CapsLock Up::
+{
+  resetInputNumber()
+  return
+}
+
+CapsLock & j::
+{
+  Send, {blind}{Left %Amount%}
+  resetInputNumber()
+  return
+}
+CapsLock & k::
+{
+  Send, {blind}{Down %Amount%}
+  resetInputNumber()
+  return
+}
+CapsLock & l::
+{
+  Send, {blind}{Right %Amount%}
+  resetInputNumber()
+  return
+}
+CapsLock & i::
+{
+  Send, {blind}{Up %Amount%}
+  resetInputNumber()
+  return
+}
+
+CapsLock & y::
+{
+  Send, {blind}{Delete %Amount%}
+  resetInputNumber()
+  return
+}
+
+CapsLock & o::
+{
+  Send, {blind}{PgUp %Amount%}
+  resetInputNumber()
+  return
+}
+CapsLock & p::
+{
+  Send, {blind}{PgDn %Amount%}
+  resetInputNumber()
+  return
+}
+
+; single use keys
 
 CapsLock & h::Send, {blind}{Home}
 CapsLock & u::Send, {blind}{End}
 
 CapsLock & n::Send, {blind}{End}{Enter}
-
-CapsLock & o::Send, {blind}{PgUp}
-CapsLock & p::Send, {blind}{PgDn}
 
 CapsLock & x::Send, {blind}^{x}
 CapsLock & c::Send, {blind}^{c}
@@ -43,6 +135,3 @@ CapsLock & s::Send, {blind}^{s}
 ; only previous since the modifier isn't held for multiple presses
 CapsLock & q::Send, {blind}!{Tab}
 CapsLock & w::Send, {blind}^{Tab}
-
-; if CapsMode is on
-; 0::add to amount (either string or if there's a way to have it continue to be a full number not just keypress)
