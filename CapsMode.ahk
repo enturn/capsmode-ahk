@@ -187,6 +187,12 @@ g::
   resetInputNumber()
   return
 }
+Backspace::
+{
+  Send, {Backspace %Amount%}
+  resetInputNumber()
+  return
+}
 
 ;; create
 
