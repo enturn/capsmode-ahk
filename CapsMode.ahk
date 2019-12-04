@@ -55,10 +55,18 @@ resetInputNumber()
 CapsLock Up::
 {
   resetInputNumber()
+  ; reset alt+tab and ctrl+tab
+  #if GetKeyState("Alt", "P")
+  Send, {Alt up}
+  #if GetKeyState("Ctrl", "P")
+  Send, {Ctrl up}
   return
 }
 
 #if GetKeyState("CapsLock", "P")
+
+q::Send, {Alt down}{Tab}
+w::Send, {Ctrl down}{Tab}
 
 ; numbers
 
@@ -175,7 +183,7 @@ y::
 }
 g::
 {
-  Send, {blind}{Home}+{Down %Amount%}{Delete}
+  Send, {blind}{Home}{Home}+{Down %Amount%}{Delete}
   resetInputNumber()
   return
 }
@@ -208,7 +216,3 @@ c::Send, {blind}^{c}
 v::Send, {blind}^{v}
 a::Send, {blind}^{a}
 s::Send, {blind}^{s}
-
-; only previous since the modifier isn't held for multiple presses
-q::Send, {blind}!{Tab}
-w::Send, {blind}^{Tab}
