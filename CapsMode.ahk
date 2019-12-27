@@ -5,35 +5,6 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 SetCapsLockState, AlwaysOff
 
-;;; Key
-;; Numbers
-; 0-9 one or more times then command to repeat a command
-;; Navigation
-; j - left
-; k - down
-; l - right
-; i - up
-; o - page up
-; p - page down
-; h - Home (not repeatable)
-; u - End (not repeatable)
-;; Delete
-; y - delete
-; g - delete line (Home, Shift+Down, Delete)
-;; Create
-; n - newline (End, Enter)
-;; Misc
-; z - undo
-; Shift+z - redo
-;; Non Repeatable Commands
-; x - cut (Ctrl+x)
-; c - copy (Ctrl+c)
-; v - paste (Ctrl+v)
-; a - select all (Ctrl+a)
-; s - save (Ctrl+s)
-
-; influenced by https://autohotkey.com/board/topic/41206-modal-vim/
-
 ;; globals
 Amount := ""
 
@@ -181,7 +152,7 @@ y::
   resetInputNumber()
   return
 }
-g::
+m::
 {
   Send, {blind}{Home}{Home}+{Down %Amount%}{Delete}
   resetInputNumber()
@@ -198,7 +169,7 @@ Backspace::
 
 n::Send, {blind}{End}{Enter %Amount%}
 
-;; misc
+;; Undo/Redo
 z::
 {
   Send, {blind}^{z %Amount%}
@@ -212,7 +183,7 @@ Shift & z::
   return
 }
 
-; single use keys
+; Non Repeatable Commands
 
 h::Send, {blind}{Home}
 u::Send, {blind}{End}
