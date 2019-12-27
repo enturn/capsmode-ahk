@@ -10,33 +10,33 @@ I read [Cursor keys belong at the center of your keyboard](https://tonsky.me/blo
 
 ## Navigation
 
-j - left
-k - down
-l - right
-i - up
-o - page up
-p - page down
-h - Home (not repeatable)
-u - End (not repeatable)
+* j - left
+* k - down
+* l - right
+* i - up
+* o - page up
+* p - page down
+* h - Home (not repeatable)
+* u - End (not repeatable)
 
 ## Delete
 
-y - delete
-m - delete line (Home, Shift+Down, Delete)
+* y - delete
+* m - delete line (Home, Shift+Down, Delete)
 
 ## Create
 
-n - newline (End, Enter)
+* n - newline (End, Enter)
 
 ## Undo/Redo
 
-z - undo
-Shift+z - redo
+* z - undo
+* Shift+z - redo
 
 ## Non Repeatable Commands
 
-x - cut (Ctrl+x)
-c - copy (Ctrl+c)
-v - paste (Ctrl+v)
-a - select all (Ctrl+a)
-s - save (Ctrl+s)
+* x - cut (Ctrl+x)
+* c - copy (Ctrl+c)
+* v - paste (Ctrl+v)
+* a - select all (Ctrl+a)
+* s - save (Ctrl+s)
